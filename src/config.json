@@ -1,0 +1,23 @@
+{
+    "dataset": "mnist",
+    "input_size": 784,
+    "hidden_sizes": [
+        128,
+        128,
+        128
+    ],
+    "output_size": 10,
+    "activation": "tanh",
+    "weight_init": "xavier",
+    "loss": "mse",
+    "optimizer": "nag",
+    "learning_rate": 0.005,
+    "batch_size": 32,
+    "epochs": 10,
+    "weight_decay": 0,
+    "best_test_f1": 0.9790071494794242,
+    "best_val_f1": 0.9804309081891566,
+    "best_val_acc": 0.9806666666666667,
+    "convergence_epoch": 10,
+    "wandb_run_id": "1ea22lel"
+}
