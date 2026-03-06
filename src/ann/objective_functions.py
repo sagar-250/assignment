@@ -43,5 +43,8 @@ class CrossEntropyLoss:
         # Always recompute softmax from current ypred to avoid stale state
         exp_logits=np.exp(self.ypred-np.max(self.ypred,axis=1,keepdims=True))
         ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
-        return (ypred_softmax-self.ytrue)/self.ytrue.shape[0]
+        ytrue=self.ytrue
+        if ytrue.ndim==1:
+            ytrue=_to_one_hot(ytrue, ypred_softmax.shape[1])
+        return (ypred_softmax-ytrue)/ytrue.shape[0]
 

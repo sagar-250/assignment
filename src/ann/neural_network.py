@@ -43,10 +43,9 @@ class NeuralNetwork:
         return out
 
     def backward(self,y_true,y_pred):
-        # Store the true and predicted values in the loss function
-        self.loss_fn.ytrue = y_true
-        self.loss_fn.ypred = y_pred
-        
+        # Keep loss-function state consistent (handles label conversion internally)
+        _ = self.loss_fn.loss(y_true, y_pred)
+
         g=self.loss_fn.derivative()
         for lyr in reversed(self.lyrs):
             g=lyr.backward(g)
