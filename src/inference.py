@@ -21,123 +21,39 @@ from utils.data_loader import load_data
 
 
 def parse_arguments():
-    """
-    Parse command-line arguments for inference.
-    """
     parser = argparse.ArgumentParser(
         description="Run inference with a trained NumPy MLP",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
     # Same CLI as train.py 
-    parser.add_argument(
-        "-d", "--dataset",
-        type=str, default="mnist",
-        choices=["mnist", "fashion_mnist"],
-        help="Dataset to evaluate on.",
-    )
-    parser.add_argument(
-        "-e", "--epochs",
-        type=int, default=30,
-        help="(Unused in inference; kept for CLI parity with train.py.)",
-    )
-    parser.add_argument(
-        "-b", "--batch_size",
-        type=int, default=128,
-        help="Batch size for inference forward passes.",
-    )
-    parser.add_argument(
-        "-l", "--loss",
-        type=str, default="cross_entropy",
-        choices=["cross_entropy", "mse"],
-        help="Loss function used during training (must match the saved model).",
-    )
-    parser.add_argument(
-        "-o", "--optimizer",
-        type=str, default="rmsprop",
-        choices=["sgd", "momentum", "nag", "rmsprop"],
-        help="(Unused in inference; kept for CLI parity.)",
-    )
-    parser.add_argument(
-        "-lr", "--learning_rate",
-        type=float, default=0.001553536703042097,
-        help="(Unused in inference; kept for CLI parity.)",
-    )
-    parser.add_argument(
-        "-wd", "--weight_decay",
-        type=float, default=0.0001,
-        help="(Unused in inference; kept for CLI parity.)",
-    )
-    parser.add_argument(
-        "-nhl", "--num_layers",
-        type=int, default=3,
-        help="Number of hidden layers (must match the saved model).",
-    )
-    parser.add_argument(
-        "-sz", "--hidden_size",
-        type=int, nargs="+", default=[128, 128, 128],
-        help="Hidden layer sizes (must match the saved model).",
-    )
-    parser.add_argument(
-        "-a", "--activation",
-        type=str, default="tanh",
-        choices=["relu", "sigmoid", "tanh"],
-        help="Activation function (must match the saved model).",
-    )
-    parser.add_argument(
-        "-w_i", "--weight_init",
-        type=str, default="xavier",
-        choices=["xavier", "random"],
-        help="(Used to build model skeleton; actual weights come from the file.)",
-    )
-    parser.add_argument(
-        "-w_p", "--wandb_project",
-        type=str, default="da6401_assignment1",
-        help="(Unused in inference; kept for CLI parity.)",
-    )
-
-    # Inference specific arguments
-    parser.add_argument(
-        "--model_path",
-        type=str, default="best_model.npy",
-        help="Relative path to the saved model weights (.npy file).",
-    )
-    parser.add_argument(
-        "--config_path",
-        type=str, default="best_config.json",
-        help="Optional: load architecture config from JSON instead of CLI flags.",
-    )
-    parser.add_argument(
-        "--val_split",
-        type=float, default=0.1,
-        help="Validation split fraction (unused; evaluation is on the test split).",
-    )
-    parser.add_argument(
-        "--seed",
-        type=int, default=42,
-        help="Random seed.",
-    )
-    parser.add_argument(
-        "--no_wandb",
-        action="store_true",
-        default=True,
-        help="Disable W&B logging during inference (default: True).",
-    )
+    parser.add_argument("-d", "--dataset", default="mnist", choices=["mnist", "fashion_mnist"])
+    parser.add_argument("-e", "--epochs", default=30)
+    parser.add_argument("-b", "--batch_size", default=128)
+    parser.add_argument("-l", "--loss", default="cross_entropy", choices=["cross_entropy", "mse"])
+    parser.add_argument("-o", "--optimizer", default="rmsprop", choices=["sgd", "momentum", "nag", "rmsprop"])
+    parser.add_argument("-lr", "--learning_rate", default=0.001553536703042097)
+    parser.add_argument("-wd", "--weight_decay", default=0.0001)
+    parser.add_argument("-nhl", "--num_layers", default=3)
+    parser.add_argument("-sz", "--hidden_size", nargs="+", default=[128, 128, 128])
+    parser.add_argument("-a", "--activation", default="tanh", choices=["relu", "sigmoid", "tanh"])
+    parser.add_argument("-w_i", "--weight_init", default="xavier", choices=["xavier", "random"])
+    parser.add_argument("-w_p", "--wandb_project", default="da6401_assignment_try2")
+    parser.add_argument("--model_path", default="best_model.npy")
+    parser.add_argument("--config_path", default="best_config.json")
+    parser.add_argument("--val_split", default=0.1)
+    parser.add_argument("--seed", default=42)
+    parser.add_argument("--no_wandb", action="store_true", default=True)
 
     return parser.parse_args()
 
 
-# load model weights from .npy file
 def load_model(model_path: str) -> dict:
     if not os.path.exists(model_path):
-        raise FileNotFoundError(
-            f"Model file not found: '{model_path}'. "
-            "Run train.py first or check the path."
-        )
+        raise FileNotFoundError(f"Model file not found: '{model_path}'. Run train.py first or check the path.")
     data = np.load(model_path, allow_pickle=True).item()
     return data
 
-# Override CLI args with config from JSON file (if it exists)
 def override_args_from_config(args, config_path: str):
     if not os.path.exists(config_path):
         print(f"[Config] '{config_path}' not found — using CLI arguments.")
@@ -146,16 +62,13 @@ def override_args_from_config(args, config_path: str):
     with open(config_path) as f:
         cfg = json.load(f)
 
-    arch_keys = [
-        "dataset", "num_layers", "activation",
-        "weight_init", "loss", "optimizer", "learning_rate", "weight_decay",
-        "batch_size", "input_size", "output_size"
-    ]
+    # load architecture params from config
+    arch_keys = ["dataset", "num_layers", "activation", "weight_init", "loss", "optimizer", "learning_rate", "weight_decay", "batch_size", "input_size", "output_size"]
     for key in arch_keys:
         if key in cfg:
             setattr(args, key, cfg[key])
     
-    # Handle both hidden_size and hidden_sizes
+    # handle both hidden_size and hidden_sizes
     if "hidden_sizes" in cfg:
         setattr(args, "hidden_size", cfg["hidden_sizes"])
     elif "hidden_size" in cfg:
@@ -165,126 +78,82 @@ def override_args_from_config(args, config_path: str):
     return args
 
 
-# Evaluate the model on the test set and compute metrics
 def evaluate_model(model: NeuralNetwork, X_test: np.ndarray, y_test: np.ndarray) -> dict:
-    """
-    Run inference and compute all required metrics.
+    from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-    Args:
-        model  : NeuralNetwork with loaded weights.
-        X_test : Test inputs,  shape (N, 784)
-        y_test : Integer labels, shape (N,)
-    Returns:
-        dict with keys: logits, loss, accuracy, precision, recall, f1, predictions
-    """
-    from sklearn.metrics import (
-        accuracy_score, precision_score, recall_score, f1_score,
-        confusion_matrix,
-    )
+    bs = 512
+    logits_list = []
+    n = X_test.shape[0]
+    for start in range(0, n, bs):
+        batch = X_test[start: start + bs]
+        logits_list.append(model.forward(batch))
 
-    batch_size = 512
-    all_logits = []
-    N = X_test.shape[0]
-    for start in range(0, N, batch_size):
-        batch = X_test[start: start + batch_size]
-        all_logits.append(model.forward(batch))
-
-    logits = np.concatenate(all_logits, axis=0)  
+    logits = np.concatenate(logits_list, axis=0)  
     preds = np.argmax(logits, axis=1)           
 
-    # Convert labels to one-hot encoding for loss calculation
-    y_test_onehot = np.zeros((y_test.shape[0], 10))
-    y_test_onehot[np.arange(y_test.shape[0]), y_test] = 1
+    # convert to one-hot for loss
+    y_oh = np.zeros((y_test.shape[0], 10))
+    y_oh[np.arange(y_test.shape[0]), y_test] = 1
     
-    # Use the model's loss function
-    loss = model.loss_fn.loss(y_test_onehot, logits)
+    loss = model.loss_fn.loss(y_oh, logits)
 
-    acc  = accuracy_score(y_test, preds)
+    acc = accuracy_score(y_test, preds)
     prec = precision_score(y_test, preds, average="macro", zero_division=0)
-    rec  = recall_score(y_test, preds, average="macro", zero_division=0)
-    f1   = f1_score(y_test, preds, average="macro", zero_division=0)
-    cm   = confusion_matrix(y_test, preds)
+    rec = recall_score(y_test, preds, average="macro", zero_division=0)
+    f1 = f1_score(y_test, preds, average="macro", zero_division=0)
+    cm = confusion_matrix(y_test, preds)
 
-    return {
-        "logits":      logits,
-        "predictions": preds,
-        "loss":        float(loss),
-        "accuracy":    float(acc),
-        "precision":   float(prec),
-        "recall":      float(rec),
-        "f1":          float(f1),
-        "confusion_matrix": cm,
-    }
+    return {"logits": logits, "predictions": preds, "loss": float(loss), "accuracy": float(acc), "precision": float(prec), "recall": float(rec), "f1": float(f1), "confusion_matrix": cm}
 
 
 def main() -> dict:
-    """
-    Main inference function.
-
-    1. Parse CLI args (override with best_config.json if present)
-    2. Load dataset test split
-    3. Reconstruct model architecture and load weights
-    4. Run evaluation
-    5. Print metrics
-    6. Return metrics dict
-
-    Returns:
-        dict: logits, loss, accuracy, precision, recall, f1
-    """
     args = parse_arguments()
     np.random.seed(args.seed)
     args = override_args_from_config(args, args.config_path)
     
-    # Load test data
-    (X_train, y_train), (X_test, y_test) = load_data(dataset=args.dataset)
+    # load data
+    (x_tr, y_tr), (x_te, y_te) = load_data(dataset=args.dataset)
     
-    # Get label names
+    # get class names
     if args.dataset == 'mnist':
-        label_names = [str(i) for i in range(10)]
-    else:  # fashion_mnist
-        label_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
-                      'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+        labels = [str(i) for i in range(10)]
+    else:
+        labels = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
     
-    # Set input and output sizes if not already set by config
+    # set input/output if not in config
     if not hasattr(args, 'input_size'):
-        args.input_size = X_test.shape[1]  # 784 for MNIST
+        args.input_size = x_te.shape[1]
     if not hasattr(args, 'output_size'):
-        args.output_size = 10  # 10 classes for both MNIST and Fashion-MNIST
+        args.output_size = 10
 
-    # reconstruct model and load weights
-    model = NeuralNetwork(args)
-    weights = load_model(args.model_path)
-    model.set_weights(weights)
+    # build model and load weights
+    mdl = NeuralNetwork(args)
+    wts = load_model(args.model_path)
+    mdl.set_weights(wts)
     print(f"[Inference] Loaded weights from '{args.model_path}'.")
 
-    # evaluate
-    results = evaluate_model(model, X_test, y_test)
+    # run evaluation
+    res = evaluate_model(mdl, x_te, y_te)
 
-    # report
+    # print results
     print("\n" + "=" * 45)
     print("          INFERENCE RESULTS")
     print("=" * 45)
     print(f"  Dataset   : {args.dataset}")
-    print(f"  Samples   : {X_test.shape[0]}")
-    print(f"  Loss      : {results['loss']:.4f}")
-    print(f"  Accuracy  : {results['accuracy']:.4f}")
-    print(f"  Precision : {results['precision']:.4f}  (macro)")
-    print(f"  Recall    : {results['recall']:.4f}  (macro)")
-    print(f"  F1-Score  : {results['f1']:.4f}  (macro)")
+    print(f"  Samples   : {x_te.shape[0]}")
+    print(f"  Loss      : {res['loss']:.4f}")
+    print(f"  Accuracy  : {res['accuracy']:.4f}")
+    print(f"  Precision : {res['precision']:.4f}  (macro)")
+    print(f"  Recall    : {res['recall']:.4f}  (macro)")
+    print(f"  F1-Score  : {res['f1']:.4f}  (macro)")
     print("=" * 45)
 
-    # Per-class F1
     from sklearn.metrics import classification_report
     print("\nPer-class report:")
-    print(
-        classification_report(
-            y_test, results["predictions"],
-            target_names=label_names, zero_division=0,
-        )
-    )
+    print(classification_report(y_te, res["predictions"], target_names=labels, zero_division=0))
 
     print("\nEvaluation complete!")
-    return results
+    return res
 
 
 if __name__ == "__main__":
