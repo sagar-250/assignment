@@ -1,5 +1,14 @@
 import numpy as np
-from keras.datasets import mnist, fashion_mnist
+import subprocess
+import sys
+
+# Try to import keras, install if not available
+try:
+    from keras.datasets import mnist, fashion_mnist
+except ImportError:
+    print("Keras not found. Installing keras...")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "keras"])
+    from keras.datasets import mnist, fashion_mnist
 
 
 def load_data(dataset='mnist', normalize=True, flatten=True):

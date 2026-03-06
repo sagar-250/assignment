@@ -1,0 +1,12 @@
+{"time":"2026-03-07T01:33:04.6813532+05:30","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-03-07T01:33:05.0939244+05:30","level":"INFO","msg":"stream: created new stream","id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:05.0944721+05:30","level":"INFO","msg":"handler: started","stream_id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:05.1006401+05:30","level":"INFO","msg":"stream: started","id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:05.1013374+05:30","level":"INFO","msg":"sender: started","stream_id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:05.1020051+05:30","level":"INFO","msg":"writer: started","stream_id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:16.1494939+05:30","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-07T01:33:16.6891515+05:30","level":"INFO","msg":"stream: closing","id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:16.6891515+05:30","level":"INFO","msg":"handler: closed","stream_id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:16.6891515+05:30","level":"WARN","msg":"runwork: ignoring record after close","work":{"Work":{"Record":{"RecordType":{"Exit":{"exit_code":255}},"control":{"always_send":true}}},"TBHandler":{}}}
+{"time":"2026-03-07T01:33:16.6891515+05:30","level":"INFO","msg":"sender: closed","stream_id":"rg1kmzu2"}
+{"time":"2026-03-07T01:33:16.6891515+05:30","level":"INFO","msg":"stream: closed","id":"rg1kmzu2"}

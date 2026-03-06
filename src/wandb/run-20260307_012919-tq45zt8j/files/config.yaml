@@ -1,0 +1,89 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            mxeyytmictw9bwhrszqdi7rw2cwrptmf:
+                args:
+                    - -d
+                    - mnist
+                    - -e
+                    - "10"
+                    - -b
+                    - "64"
+                    - -l
+                    - mse
+                    - -o
+                    - rmsprop
+                    - -lr
+                    - "0.001"
+                    - -sz
+                    - "128"
+                    - "128"
+                    - "128"
+                    - -a
+                    - relu
+                    - -w_i
+                    - xavier
+                codePath: src\train.py
+                codePathLocal: train.py
+                cpu_count: 12
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "512092008448"
+                        used: "121967177728"
+                email: ce23b108@smail.iitm.ac.in
+                executable: D:\Sagar\SOFTWARE\Anaconda\anaconda3\envs\GPU\python.exe
+                git:
+                    commit: 2cc2301679da5922000a122eb3096aa850b70b28
+                    remote: https://github.com/sagar-250/assignment.git
+                host: LAPTOP-KHR5HKLO
+                memory:
+                    total: "16782307328"
+                os: Windows-11-10.0.26200-SP0
+                program: D:\Sagar\Study\DL\ass\da6401_assignment_1\src\train.py
+                python: CPython 3.12.6
+                root: D:\Sagar\Study\DL\ass\da6401_assignment_1\src
+                startedAt: "2026-03-06T19:59:19.265454Z"
+                writerId: mxeyytmictw9bwhrszqdi7rw2cwrptmf
+        m: []
+        python_version: 3.12.6
+        t:
+            "1":
+                - 105
+            "2":
+                - 105
+            "3":
+                - 2
+                - 16
+            "4": 3.12.6
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+activation:
+    value: relu
+batch_size:
+    value: 64
+dataset:
+    value: mnist
+epochs:
+    value: 10
+hidden_size:
+    value:
+        - 128
+        - 128
+        - 128
+learning_rate:
+    value: 0.001
+loss:
+    value: mse
+num_layers:
+    value: 2
+optimizer:
+    value: rmsprop
+weight_decay:
+    value: 0
+weight_init:
+    value: xavier

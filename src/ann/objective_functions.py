@@ -32,5 +32,9 @@ class CrossEntropyLoss:
         return -np.sum(ytrue*np.log(probs))/ytrue.shape[0]
 
     def derivative(self): #combined with softmax derivative for easier gradient
+        # Compute softmax if not already computed
+        if self.ypred_softmax is None:
+            exp_logits=np.exp(self.ypred-np.max(self.ypred,axis=1,keepdims=True))
+            self.ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
         return (self.ypred_softmax-self.ytrue)/self.ytrue.shape[0] 
     
