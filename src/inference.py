@@ -19,7 +19,7 @@ def parse_arguments():
     parser=argparse.ArgumentParser()
     parser.add_argument('-d','--dataset',type=str,default='mnist')
     parser.add_argument('--model_path',type=str,default='best_model.npy')
-    parser.add_argument('--config_path',type=str,default='config.json')
+    parser.add_argument('--config_path',type=str,default='best_config.json')
     return parser.parse_args()
 
 

@@ -11,14 +11,13 @@ class MSELoss:
         return np.mean(np.square(ytrue-ypred))
 
     def derivative(self):
-        n=self.ytrue.shape[0]
-        return (2/n)*(self.ypred-self.ytrue)
+        # Consistent with np.mean which divides by total elements (n * num_classes)
+        return 2*(self.ypred-self.ytrue)/self.ypred.size
 
 class CrossEntropyLoss:
     def __init__(self):
         self.ytrue=None
         self.ypred=None
-        self.ypred_softmax=None
         self.eps=1e-15
 
     def loss(self,ytrue,ypred):
@@ -26,15 +25,14 @@ class CrossEntropyLoss:
         self.ypred=ypred
         # Apply softmax to logits
         exp_logits=np.exp(ypred-np.max(ypred,axis=1,keepdims=True))
-        self.ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
+        ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
         # Clip for numerical stability
-        probs=np.clip(self.ypred_softmax,self.eps,1-self.eps)
+        probs=np.clip(ypred_softmax,self.eps,1-self.eps)
         return -np.sum(ytrue*np.log(probs))/ytrue.shape[0]
 
     def derivative(self): #combined with softmax derivative for easier gradient
-        # Compute softmax if not already computed
-        if self.ypred_softmax is None:
-            exp_logits=np.exp(self.ypred-np.max(self.ypred,axis=1,keepdims=True))
-            self.ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
-        return (self.ypred_softmax-self.ytrue)/self.ytrue.shape[0] 
-    
+        # Always recompute softmax from current ypred to avoid stale state
+        exp_logits=np.exp(self.ypred-np.max(self.ypred,axis=1,keepdims=True))
+        ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
+        return (ypred_softmax-self.ytrue)/self.ytrue.shape[0]
+
