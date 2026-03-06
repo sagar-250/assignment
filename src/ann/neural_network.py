@@ -18,13 +18,14 @@ class NeuralNetwork:
     """
 
     def __init__(self,cli_args):
-        self.in_size=cli_args.input_size
-        self.hid_sizes=cli_args.hidden_size
-        self.out_size=cli_args.output_size
-        self.act=cli_args.activation
-        self.w_init=cli_args.weight_init
+        self.in_size=getattr(cli_args, 'input_size', 784)  # Default for MNIST: 28*28=784
+        self.hid_sizes=getattr(cli_args, 'hidden_size', [128])
+        self.out_size=getattr(cli_args, 'output_size', 10)  # Default for MNIST: 10 classes
+        self.act=getattr(cli_args, 'activation', 'relu')
+        self.w_init=getattr(cli_args, 'weight_init', 'xavier')
         self.lyrs=[]
-        self.loss_fn=CrossEntropyLoss() if cli_args.loss=='cross_entropy' else MSELoss()
+        loss_type = getattr(cli_args, 'loss', 'cross_entropy')
+        self.loss_fn=CrossEntropyLoss() if loss_type=='cross_entropy' else MSELoss()
         self._build_network()
         self.layers=self.lyrs
 
