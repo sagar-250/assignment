@@ -1,5 +1,14 @@
 import numpy as np
 
+class Identity:
+    """Linear activation - returns input as-is (for output layer to get logits)"""
+    def __init__(self):
+        pass
+    def forward(self, x):
+        return x
+    def backward(self, gout):
+        return gout
+
 class Sigmoid:
     def __init__(self):
         self.out=None

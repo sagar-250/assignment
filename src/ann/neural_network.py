@@ -6,11 +6,11 @@ import numpy as np
 import copy
 
 from .neural_layer import Layer
-from .activations import Sigmoid, ReLU, Tanh, Softmax
+from .activations import Sigmoid, ReLU, Tanh, Softmax, Identity
 from .objective_functions import CrossEntropyLoss, MSELoss
 
 
-acts={'relu':ReLU,'sigmoid':Sigmoid,'tanh':Tanh,'softmax':Softmax}
+acts={'relu':ReLU,'sigmoid':Sigmoid,'tanh':Tanh,'softmax':Softmax,'identity':Identity}
 
 class NeuralNetwork:
     """
@@ -33,7 +33,7 @@ class NeuralNetwork:
         act_cls=acts[self.act.lower()]
         sizes=[self.in_size]+self.hid_sizes+[self.out_size]
         for i in range(len(sizes)-1):
-            a=act_cls if i<len(sizes)-2 else Softmax
+            a=act_cls if i<len(sizes)-2 else Identity  # Use Identity for output layer to return logits
             self.lyrs.append(Layer(sizes[i],sizes[i+1],a,weight_init=self.w_init))
 
     def forward(self,X):
