@@ -1,0 +1,42 @@
+
+Successfully connected to W&B
+  Project: da6401-assignment1_try2
+  Run ID: d85vxmz6
+  Run URL: https://wandb.ai/ce23b108-indian-institute-of-technology-madras/da6401-assignment1_try2/runs/d85vxmz6
+
+Downloading https://raw.githubusercontent.com/fgnt/mnist/master/train-images-idx3-ubyte.gz...
+Downloaded to C:\Users\Sagar\.mnist_data\mnist\train-images-idx3-ubyte.gz
+Downloading https://raw.githubusercontent.com/fgnt/mnist/master/train-labels-idx1-ubyte.gz...
+Downloaded to C:\Users\Sagar\.mnist_data\mnist\train-labels-idx1-ubyte.gz
+Downloading https://raw.githubusercontent.com/fgnt/mnist/master/t10k-images-idx3-ubyte.gz...
+Downloaded to C:\Users\Sagar\.mnist_data\mnist\t10k-images-idx3-ubyte.gz
+Downloading https://raw.githubusercontent.com/fgnt/mnist/master/t10k-labels-idx1-ubyte.gz...
+Downloaded to C:\Users\Sagar\.mnist_data\mnist\t10k-labels-idx1-ubyte.gz
+
+============================================================
+Training Configuration:
+  Dataset: mnist
+  Optimizer: rmsprop
+  Learning Rate: 0.001
+  Epochs: 10
+  Batch Size: 64
+  Architecture: [128, 128, 128]
+  Activation: relu
+  Weight Init: xavier
+  Loss: mse
+============================================================
+
+Epoch 1/10 - train_loss: 0.0156 | train_acc: 0.9678 | train_f1: 0.9675 | val_loss: 0.0077 | val_acc: 0.9642 | val_f1: 0.9639
+Epoch 2/10 - train_loss: 0.0060 | train_acc: 0.9810 | train_f1: 0.9809 | val_loss: 0.0048 | val_acc: 0.9750 | val_f1: 0.9747
+Traceback (most recent call last):
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\train.py", line 198, in train_with_wandb
+    model.train(
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_network.py", line 94, in train
+    self.backward(yb,ypred)
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_network.py", line 52, in backward
+    g=lyr.backward(g)
+      ^^^^^^^^^^^^^^^
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_layer.py", line 26, in backward
+    self.grad_W=np.dot(self.inp.T,gz)
+                ^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
