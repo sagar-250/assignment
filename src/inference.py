@@ -147,13 +147,19 @@ def override_args_from_config(args, config_path: str):
         cfg = json.load(f)
 
     arch_keys = [
-        "dataset", "num_layers", "hidden_size", "activation",
+        "dataset", "num_layers", "activation",
         "weight_init", "loss", "optimizer", "learning_rate", "weight_decay",
-        "batch_size",
+        "batch_size", "input_size", "output_size"
     ]
     for key in arch_keys:
         if key in cfg:
             setattr(args, key, cfg[key])
+    
+    # Handle both hidden_size and hidden_sizes
+    if "hidden_sizes" in cfg:
+        setattr(args, "hidden_size", cfg["hidden_sizes"])
+    elif "hidden_size" in cfg:
+        setattr(args, "hidden_size", cfg["hidden_size"])
 
     print(f"[Config] Loaded architecture from '{config_path}'.")
     return args
@@ -186,9 +192,12 @@ def evaluate_model(model: NeuralNetwork, X_test: np.ndarray, y_test: np.ndarray)
     logits = np.concatenate(all_logits, axis=0)  
     preds = np.argmax(logits, axis=1)           
 
-    from ann.objective_functions import get_loss
-    loss_fn = get_loss(model.cli_args.loss)
-    loss = loss_fn.forward(y_test, logits)
+    # Convert labels to one-hot encoding for loss calculation
+    y_test_onehot = np.zeros((y_test.shape[0], 10))
+    y_test_onehot[np.arange(y_test.shape[0]), y_test] = 1
+    
+    # Use the model's loss function
+    loss = model.loss_fn.loss(y_test_onehot, logits)
 
     acc  = accuracy_score(y_test, preds)
     prec = precision_score(y_test, preds, average="macro", zero_division=0)
@@ -235,6 +244,12 @@ def main() -> dict:
     else:  # fashion_mnist
         label_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                       'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+    
+    # Set input and output sizes if not already set by config
+    if not hasattr(args, 'input_size'):
+        args.input_size = X_test.shape[1]  # 784 for MNIST
+    if not hasattr(args, 'output_size'):
+        args.output_size = 10  # 10 classes for both MNIST and Fashion-MNIST
 
     # reconstruct model and load weights
     model = NeuralNetwork(args)
