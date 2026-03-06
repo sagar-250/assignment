@@ -1,0 +1,55 @@
+{
+  "os":  "Windows-11-10.0.26200-SP0",
+  "python":  "CPython 3.12.6",
+  "startedAt":  "2026-03-06T21:15:58.890234Z",
+  "args":  [
+    "-d",
+    "mnist",
+    "-e",
+    "50",
+    "-b",
+    "128",
+    "-l",
+    "cross_entropy",
+    "-o",
+    "rmsprop",
+    "-lr",
+    "0.0015",
+    "-wd",
+    "0.0001",
+    "-nhl",
+    "3",
+    "-sz",
+    "128",
+    "128",
+    "128",
+    "-a",
+    "tanh",
+    "-w_i",
+    "xavier",
+    "--save_model"
+  ],
+  "program":  "D:\\Sagar\\Study\\DL\\ass\\da6401_assignment_1\\src\\train.py",
+  "codePath":  "src\\train.py",
+  "codePathLocal":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/sagar-250/assignment.git",
+    "commit":  "1423f3cd8a548dc9e91cc4d6ad7a9484bd0cb329"
+  },
+  "email":  "ce23b108@smail.iitm.ac.in",
+  "root":  "D:\\Sagar\\Study\\DL\\ass\\da6401_assignment_1\\src",
+  "host":  "LAPTOP-KHR5HKLO",
+  "executable":  "D:\\Sagar\\SOFTWARE\\Anaconda\\anaconda3\\envs\\GPU\\python.exe",
+  "cpu_count":  12,
+  "cpu_count_logical":  16,
+  "disk":  {
+    "/":  {
+      "total":  "512092008448",
+      "used":  "121976102912"
+    }
+  },
+  "memory":  {
+    "total":  "16782307328"
+  },
+  "writerId":  "5c6o5qsc9pm3cubpq1j1f1jzrta9b0ak"
+}

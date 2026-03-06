@@ -1,0 +1,96 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            5c6o5qsc9pm3cubpq1j1f1jzrta9b0ak:
+                args:
+                    - -d
+                    - mnist
+                    - -e
+                    - "50"
+                    - -b
+                    - "128"
+                    - -l
+                    - cross_entropy
+                    - -o
+                    - rmsprop
+                    - -lr
+                    - "0.0015"
+                    - -wd
+                    - "0.0001"
+                    - -nhl
+                    - "3"
+                    - -sz
+                    - "128"
+                    - "128"
+                    - "128"
+                    - -a
+                    - tanh
+                    - -w_i
+                    - xavier
+                    - --save_model
+                codePath: src\train.py
+                codePathLocal: train.py
+                cpu_count: 12
+                cpu_count_logical: 16
+                disk:
+                    /:
+                        total: "512092008448"
+                        used: "121976102912"
+                email: ce23b108@smail.iitm.ac.in
+                executable: D:\Sagar\SOFTWARE\Anaconda\anaconda3\envs\GPU\python.exe
+                git:
+                    commit: 1423f3cd8a548dc9e91cc4d6ad7a9484bd0cb329
+                    remote: https://github.com/sagar-250/assignment.git
+                host: LAPTOP-KHR5HKLO
+                memory:
+                    total: "16782307328"
+                os: Windows-11-10.0.26200-SP0
+                program: D:\Sagar\Study\DL\ass\da6401_assignment_1\src\train.py
+                python: CPython 3.12.6
+                root: D:\Sagar\Study\DL\ass\da6401_assignment_1\src
+                startedAt: "2026-03-06T21:15:58.890234Z"
+                writerId: 5c6o5qsc9pm3cubpq1j1f1jzrta9b0ak
+        m: []
+        python_version: 3.12.6
+        t:
+            "1":
+                - 105
+            "2":
+                - 105
+            "3":
+                - 2
+                - 16
+                - 17
+                - 62
+            "4": 3.12.6
+            "5": 0.25.0
+            "8":
+                - 3
+            "12": 0.25.0
+            "13": windows-amd64
+activation:
+    value: tanh
+batch_size:
+    value: 128
+dataset:
+    value: mnist
+epochs:
+    value: 50
+hidden_size:
+    value:
+        - 128
+        - 128
+        - 128
+learning_rate:
+    value: 0.0015
+loss:
+    value: cross_entropy
+num_layers:
+    value: 3
+optimizer:
+    value: rmsprop
+weight_decay:
+    value: 0.0001
+weight_init:
+    value: xavier

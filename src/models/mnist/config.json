@@ -1,0 +1,23 @@
+{
+    "dataset": "mnist",
+    "input_size": 784,
+    "hidden_sizes": [
+        128,
+        128,
+        128
+    ],
+    "output_size": 10,
+    "activation": "tanh",
+    "weight_init": "xavier",
+    "loss": "cross_entropy",
+    "optimizer": "rmsprop",
+    "learning_rate": 0.0015,
+    "batch_size": 128,
+    "epochs": 50,
+    "weight_decay": 0.0001,
+    "best_test_f1": 0.9758399206446319,
+    "best_val_f1": 0.9804122369736039,
+    "best_val_acc": 0.9806666666666667,
+    "convergence_epoch": 21,
+    "wandb_run_id": "zufrsxca"
+}

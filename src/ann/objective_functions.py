@@ -11,8 +11,8 @@ class MSELoss:
         return np.mean(np.square(ytrue-ypred))
 
     def derivative(self):
-        # Consistent with np.mean which divides by total elements (n * num_classes)
-        return 2*(self.ypred-self.ytrue)/self.ypred.size
+        # Gradient will be normalized by batch_size in layer backward
+        return 2*(self.ypred-self.ytrue)
 
 class CrossEntropyLoss:
     def __init__(self):
@@ -34,5 +34,5 @@ class CrossEntropyLoss:
         # Always recompute softmax from current ypred to avoid stale state
         exp_logits=np.exp(self.ypred-np.max(self.ypred,axis=1,keepdims=True))
         ypred_softmax=exp_logits/np.sum(exp_logits,axis=1,keepdims=True)
-        return (ypred_softmax-self.ytrue)/self.ytrue.shape[0]
+        return (ypred_softmax-self.ytrue)
 

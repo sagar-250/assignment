@@ -1,0 +1,79 @@
+
+Successfully connected to W&B
+  Project: da6401-assignment1_try2
+  Run ID: zufrsxca
+  Run URL: https://wandb.ai/ce23b108-indian-institute-of-technology-madras/da6401-assignment1_try2/runs/zufrsxca
+
+
+============================================================
+Training Configuration:
+  Dataset: mnist
+  Optimizer: rmsprop
+  Learning Rate: 0.0015
+  Epochs: 50
+  Batch Size: 128
+  Architecture: [128, 128, 128]
+  Activation: tanh
+  Weight Init: xavier
+  Loss: cross_entropy
+============================================================
+
+Epoch 1/50 - train_loss: 0.3111 | train_acc: 0.9419 | train_f1: 0.9413 | val_loss: 0.1849 | val_acc: 0.9425 | val_f1: 0.9412
+Epoch 2/50 - train_loss: 0.1427 | train_acc: 0.9689 | train_f1: 0.9686 | val_loss: 0.1177 | val_acc: 0.9640 | val_f1: 0.9635
+Epoch 3/50 - train_loss: 0.0966 | train_acc: 0.9728 | train_f1: 0.9726 | val_loss: 0.1137 | val_acc: 0.9643 | val_f1: 0.9637
+Epoch 4/50 - train_loss: 0.0722 | train_acc: 0.9863 | train_f1: 0.9862 | val_loss: 0.0819 | val_acc: 0.9743 | val_f1: 0.9740
+Epoch 5/50 - train_loss: 0.0538 | train_acc: 0.9898 | train_f1: 0.9897 | val_loss: 0.0830 | val_acc: 0.9767 | val_f1: 0.9764
+Epoch 6/50 - train_loss: 0.0426 | train_acc: 0.9891 | train_f1: 0.9891 | val_loss: 0.0935 | val_acc: 0.9728 | val_f1: 0.9726
+Epoch 7/50 - train_loss: 0.0330 | train_acc: 0.9944 | train_f1: 0.9943 | val_loss: 0.0845 | val_acc: 0.9775 | val_f1: 0.9772
+Epoch 8/50 - train_loss: 0.0261 | train_acc: 0.9933 | train_f1: 0.9933 | val_loss: 0.0903 | val_acc: 0.9730 | val_f1: 0.9728
+Epoch 9/50 - train_loss: 0.0207 | train_acc: 0.9936 | train_f1: 0.9936 | val_loss: 0.0908 | val_acc: 0.9765 | val_f1: 0.9763
+Epoch 10/50 - train_loss: 0.0173 | train_acc: 0.9959 | train_f1: 0.9959 | val_loss: 0.0901 | val_acc: 0.9785 | val_f1: 0.9782
+Epoch 11/50 - train_loss: 0.0143 | train_acc: 0.9976 | train_f1: 0.9976 | val_loss: 0.0886 | val_acc: 0.9778 | val_f1: 0.9775
+Epoch 12/50 - train_loss: 0.0109 | train_acc: 0.9962 | train_f1: 0.9963 | val_loss: 0.0931 | val_acc: 0.9763 | val_f1: 0.9762
+Epoch 13/50 - train_loss: 0.0091 | train_acc: 0.9989 | train_f1: 0.9989 | val_loss: 0.0983 | val_acc: 0.9775 | val_f1: 0.9772
+Epoch 14/50 - train_loss: 0.0074 | train_acc: 0.9949 | train_f1: 0.9948 | val_loss: 0.1229 | val_acc: 0.9743 | val_f1: 0.9737
+Epoch 15/50 - train_loss: 0.0069 | train_acc: 0.9979 | train_f1: 0.9979 | val_loss: 0.1187 | val_acc: 0.9760 | val_f1: 0.9757
+Epoch 16/50 - train_loss: 0.0061 | train_acc: 0.9988 | train_f1: 0.9988 | val_loss: 0.1181 | val_acc: 0.9748 | val_f1: 0.9746
+Epoch 17/50 - train_loss: 0.0059 | train_acc: 0.9992 | train_f1: 0.9992 | val_loss: 0.1089 | val_acc: 0.9783 | val_f1: 0.9781
+Epoch 18/50 - train_loss: 0.0046 | train_acc: 0.9979 | train_f1: 0.9979 | val_loss: 0.1168 | val_acc: 0.9775 | val_f1: 0.9771
+Epoch 19/50 - train_loss: 0.0047 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.0998 | val_acc: 0.9803 | val_f1: 0.9801
+Epoch 20/50 - train_loss: 0.0039 | train_acc: 0.9994 | train_f1: 0.9994 | val_loss: 0.1267 | val_acc: 0.9768 | val_f1: 0.9765
+Epoch 21/50 - train_loss: 0.0037 | train_acc: 0.9993 | train_f1: 0.9993 | val_loss: 0.1083 | val_acc: 0.9807 | val_f1: 0.9804
+Epoch 22/50 - train_loss: 0.0041 | train_acc: 0.9993 | train_f1: 0.9993 | val_loss: 0.1264 | val_acc: 0.9763 | val_f1: 0.9760
+Epoch 23/50 - train_loss: 0.0033 | train_acc: 0.9995 | train_f1: 0.9995 | val_loss: 0.1243 | val_acc: 0.9772 | val_f1: 0.9769
+Epoch 24/50 - train_loss: 0.0030 | train_acc: 0.9994 | train_f1: 0.9994 | val_loss: 0.1310 | val_acc: 0.9782 | val_f1: 0.9779
+Epoch 25/50 - train_loss: 0.0023 | train_acc: 0.9996 | train_f1: 0.9995 | val_loss: 0.1395 | val_acc: 0.9780 | val_f1: 0.9777
+Epoch 26/50 - train_loss: 0.0026 | train_acc: 0.9995 | train_f1: 0.9995 | val_loss: 0.1435 | val_acc: 0.9785 | val_f1: 0.9782
+Epoch 27/50 - train_loss: 0.0022 | train_acc: 0.9993 | train_f1: 0.9993 | val_loss: 0.1295 | val_acc: 0.9797 | val_f1: 0.9795
+Epoch 28/50 - train_loss: 0.0027 | train_acc: 0.9997 | train_f1: 0.9997 | val_loss: 0.1401 | val_acc: 0.9777 | val_f1: 0.9774
+Epoch 29/50 - train_loss: 0.0024 | train_acc: 0.9989 | train_f1: 0.9988 | val_loss: 0.1462 | val_acc: 0.9753 | val_f1: 0.9749
+Epoch 30/50 - train_loss: 0.0020 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.1453 | val_acc: 0.9783 | val_f1: 0.9781
+Epoch 31/50 - train_loss: 0.0016 | train_acc: 0.9997 | train_f1: 0.9997 | val_loss: 0.1486 | val_acc: 0.9767 | val_f1: 0.9763
+Epoch 32/50 - train_loss: 0.0031 | train_acc: 0.9992 | train_f1: 0.9992 | val_loss: 0.1674 | val_acc: 0.9755 | val_f1: 0.9751
+Epoch 33/50 - train_loss: 0.0024 | train_acc: 0.9999 | train_f1: 0.9999 | val_loss: 0.1515 | val_acc: 0.9790 | val_f1: 0.9786
+Epoch 34/50 - train_loss: 0.0023 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.1742 | val_acc: 0.9783 | val_f1: 0.9779
+Epoch 35/50 - train_loss: 0.0020 | train_acc: 0.9998 | train_f1: 0.9998 | val_loss: 0.1557 | val_acc: 0.9768 | val_f1: 0.9765
+Epoch 36/50 - train_loss: 0.0017 | train_acc: 0.9990 | train_f1: 0.9990 | val_loss: 0.1915 | val_acc: 0.9747 | val_f1: 0.9743
+Epoch 37/50 - train_loss: 0.0016 | train_acc: 0.9998 | train_f1: 0.9998 | val_loss: 0.1543 | val_acc: 0.9793 | val_f1: 0.9790
+Epoch 38/50 - train_loss: 0.0021 | train_acc: 0.9997 | train_f1: 0.9997 | val_loss: 0.1517 | val_acc: 0.9793 | val_f1: 0.9790
+Epoch 39/50 - train_loss: 0.0013 | train_acc: 0.9989 | train_f1: 0.9988 | val_loss: 0.1768 | val_acc: 0.9763 | val_f1: 0.9760
+Epoch 40/50 - train_loss: 0.0013 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.1795 | val_acc: 0.9782 | val_f1: 0.9778
+Epoch 41/50 - train_loss: 0.0019 | train_acc: 0.9999 | train_f1: 0.9999 | val_loss: 0.1561 | val_acc: 0.9787 | val_f1: 0.9783
+Epoch 42/50 - train_loss: 0.0021 | train_acc: 0.9992 | train_f1: 0.9992 | val_loss: 0.1670 | val_acc: 0.9778 | val_f1: 0.9775
+Epoch 43/50 - train_loss: 0.0018 | train_acc: 0.9991 | train_f1: 0.9991 | val_loss: 0.1767 | val_acc: 0.9763 | val_f1: 0.9760
+Epoch 44/50 - train_loss: 0.0014 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.1805 | val_acc: 0.9765 | val_f1: 0.9761
+Epoch 45/50 - train_loss: 0.0018 | train_acc: 0.9997 | train_f1: 0.9997 | val_loss: 0.1798 | val_acc: 0.9778 | val_f1: 0.9776
+Epoch 46/50 - train_loss: 0.0009 | train_acc: 0.9996 | train_f1: 0.9996 | val_loss: 0.2022 | val_acc: 0.9758 | val_f1: 0.9756
+Epoch 47/50 - train_loss: 0.0008 | train_acc: 0.9999 | train_f1: 0.9998 | val_loss: 0.1961 | val_acc: 0.9770 | val_f1: 0.9767
+Epoch 48/50 - train_loss: 0.0016 | train_acc: 0.9998 | train_f1: 0.9998 | val_loss: 0.1935 | val_acc: 0.9772 | val_f1: 0.9767
+Epoch 49/50 - train_loss: 0.0016 | train_acc: 0.9990 | train_f1: 0.9990 | val_loss: 0.2106 | val_acc: 0.9748 | val_f1: 0.9744
+Epoch 50/50 - train_loss: 0.0012 | train_acc: 0.9993 | train_f1: 0.9993 | val_loss: 0.2052 | val_acc: 0.9757 | val_f1: 0.9752
+
+ NEW BEST MODEL! Val F1: 0.9804 (prev: 0.9794)
+  -> Corresponding Test F1: 0.9758
+
+✓ Training completed!
+  Final Test Loss: 0.1883
+  Final Test Accuracy: 0.9761
+  Final Test F1: 0.9758
+  Best Val F1: 0.9804 (epoch 21)

@@ -192,9 +192,12 @@ def evaluate_model(model: NeuralNetwork, X_test: np.ndarray, y_test: np.ndarray)
     logits = np.concatenate(all_logits, axis=0)  
     preds = np.argmax(logits, axis=1)           
 
-    from ann.objective_functions import get_loss
-    loss_fn = get_loss(model.cli_args.loss)
-    loss = loss_fn.forward(y_test, logits)
+    # Convert labels to one-hot encoding for loss calculation
+    y_test_onehot = np.zeros((y_test.shape[0], 10))
+    y_test_onehot[np.arange(y_test.shape[0]), y_test] = 1
+    
+    # Use the model's loss function
+    loss = model.loss_fn.loss(y_test_onehot, logits)
 
     acc  = accuracy_score(y_test, preds)
     prec = precision_score(y_test, preds, average="macro", zero_division=0)
