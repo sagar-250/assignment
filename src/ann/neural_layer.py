@@ -23,8 +23,7 @@ class Layer:
 
     def backward(self,gout):
         gz=self.act.backward(gout)
-        batch_size = self.inp.shape[0]
-        self.grad_W=np.dot(self.inp.T,gz) / batch_size
-        self.grad_b=np.sum(gz,axis=0,keepdims=True) / batch_size
+        self.grad_W=np.dot(self.inp.T,gz)
+        self.grad_b=np.sum(gz,axis=0,keepdims=True)
         gin=np.dot(gz,self.W.T)
         return gin
