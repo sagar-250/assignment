@@ -1,0 +1,38 @@
+
+Successfully connected to W&B
+  Project: da6401-assignment1_try2
+  Run ID: wjh0s9hk
+  Run URL: https://wandb.ai/ce23b108-indian-institute-of-technology-madras/da6401-assignment1_try2/runs/wjh0s9hk
+
+
+============================================================
+Training Configuration:
+  Dataset: mnist
+  Optimizer: nag
+  Learning Rate: 0.001
+  Epochs: 20
+  Batch Size: 32
+  Architecture: [128, 128, 128, 128, 128]
+  Activation: relu
+  Weight Init: xavier
+  Loss: cross_entropy
+============================================================
+
+Epoch 1/20 - train_loss: 0.8545 | train_acc: 0.9071 | train_f1: 0.9061 | val_loss: 0.3032 | val_acc: 0.9137 | val_f1: 0.9121
+Epoch 2/20 - train_loss: 0.2624 | train_acc: 0.9349 | train_f1: 0.9341 | val_loss: 0.2152 | val_acc: 0.9338 | val_f1: 0.9323
+Traceback (most recent call last):
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\train.py", line 198, in train_with_wandb
+    model.train(
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_network.py", line 92, in train
+    ypred=self.forward(xb)
+          ^^^^^^^^^^^^^^^^
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_network.py", line 42, in forward
+    out=lyr.forward(out)
+        ^^^^^^^^^^^^^^^^
+  File "D:\Sagar\Study\DL\ass\da6401_assignment_1\src\ann\neural_layer.py", line 21, in forward
+    self.z=np.dot(x,self.W)+self.b
+           ^^^^^^^^^^^^^^^^
+  File "D:\Sagar\SOFTWARE\Anaconda\anaconda3\envs\GPU\Lib\site-packages\numpy\core\multiarray.py", line 741, in dot
+    @array_function_from_c_func_and_dispatcher(_multiarray_umath.dot)
+
+KeyboardInterrupt

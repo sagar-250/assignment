@@ -18,8 +18,8 @@ def one_hot(y,num_classes=10):
 def parse_arguments():
     parser=argparse.ArgumentParser()
     parser.add_argument('-d','--dataset',type=str,default='mnist')
-    parser.add_argument('--model_path',type=str,default='models/best_model.npy')
-    parser.add_argument('--config_path',type=str,default='models/config.json')
+    parser.add_argument('--model_path',type=str,default='best_model.npy')
+    parser.add_argument('--config_path',type=str,default='config.json')
     return parser.parse_args()
 
 

@@ -4,20 +4,22 @@
     "hidden_sizes": [
         128,
         128,
+        128,
+        128,
         128
     ],
     "output_size": 10,
-    "activation": "tanh",
+    "activation": "relu",
     "weight_init": "xavier",
-    "loss": "mse",
+    "loss": "cross_entropy",
     "optimizer": "nag",
-    "learning_rate": 0.005,
+    "learning_rate": 0.001,
     "batch_size": 32,
-    "epochs": 10,
+    "epochs": 20,
     "weight_decay": 0,
-    "best_test_f1": 0.9790071494794242,
-    "best_val_f1": 0.9804309081891566,
-    "best_val_acc": 0.9806666666666667,
-    "convergence_epoch": 10,
-    "wandb_run_id": "1ea22lel"
+    "best_test_f1": 0.9756661076111787,
+    "best_val_f1": 0.979419735061448,
+    "best_val_acc": 0.9796666666666667,
+    "convergence_epoch": 19,
+    "wandb_run_id": "4xi2e3l1"
 }
