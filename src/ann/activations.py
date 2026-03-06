@@ -1,4 +1,4 @@
 """
 Activation Functions and Their Derivatives
-Implements: ReLU, Sigmoid, Tanh, Softmax
+Implements:  ReLU, Sigmoid, Tanh, Softmax
 """
