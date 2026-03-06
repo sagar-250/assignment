@@ -17,7 +17,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(__file__))
 
 from ann.neural_network import NeuralNetwork
-from utils.data_loader import load_dataset
+from utils.data_loader import load_data
 
 
 def parse_arguments():
@@ -225,9 +225,16 @@ def main() -> dict:
     args = parse_arguments()
     np.random.seed(args.seed)
     args = override_args_from_config(args, args.config_path)
-    _, _, _, _, X_test, y_test, label_names = load_dataset(
-        args.dataset, val_split=args.val_split, seed=args.seed
-    )
+    
+    # Load test data
+    (X_train, y_train), (X_test, y_test) = load_data(dataset=args.dataset)
+    
+    # Get label names
+    if args.dataset == 'mnist':
+        label_names = [str(i) for i in range(10)]
+    else:  # fashion_mnist
+        label_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+                      'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
 
     # reconstruct model and load weights
     model = NeuralNetwork(args)
