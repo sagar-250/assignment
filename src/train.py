@@ -31,11 +31,7 @@ def load_model(model_path):
     return data
 
 def compute_f1_score(y_true, y_pred, num_classes=10):
-    """
-    Compute macro F1 score for multi-class classification.
-    y_true: one-hot encoded or class indices
-    y_pred: one-hot encoded or class indices
-    """
+
     # Convert to class indices if one-hot encoded
     if len(y_true.shape) > 1 and y_true.shape[1] > 1:
         y_true = np.argmax(y_true, axis=1)
@@ -103,8 +99,6 @@ def train_with_wandb(config=None, project='da6401-assignment1_try2', entity=None
             hidden_sizes = [cfg.num_neurons] * cfg.num_layers
         else:
             hidden_sizes = [128] * cfg.num_layers
-
-       
         class Arg:
             pass
         
@@ -236,7 +230,7 @@ def train_with_wandb(config=None, project='da6401-assignment1_try2', entity=None
             with open(best_f1_file, 'r') as f:
                 current_best_val_f1 = float(f.read().strip())
         
-        # Save model based on VALIDATION F1 
+        # Save model based on validation F1 
         if best_val_f1 > current_best_val_f1:
             with open(best_f1_file, 'w') as f:
                 f.write(str(best_val_f1))
